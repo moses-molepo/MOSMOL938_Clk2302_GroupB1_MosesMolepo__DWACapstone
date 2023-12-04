@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Episodes from './Episodes.jsx';
-
+import FavoriteEpisodes from './FavoriteEpisodes.jsx'
 // import { Link } from 'react-router-dom'
 
 const truncateDescription = (text, limit) => {
@@ -104,6 +104,8 @@ const PodcastCard = ({ podcast, allIds }) => {
   const isFavorite = favoriteSeasons.includes(selectedSeason);
 
   return (
+
+    
     <Card style={{ padding: '10px', margin: '30px' }}>
       <Container>
         {loadingGenres && <Loader />}
@@ -221,35 +223,34 @@ const genreMapping = {
       setSearchTermGenre(event.target.value);
     };
   
+    const handleSortByDate = () => {
+      setSortBy((prevSortBy) => (prevSortBy === 'asc' ? 'desc' : 'asc'));
+    };
+  
     const sortedAndFilteredPodcasts = [...podcastData]
       .filter((podcast) =>
         podcast.title.toLowerCase().includes(searchTermTitle.toLowerCase()) &&
         (searchTermGenre === '' || podcast.genres.includes(Number(searchTermGenre)))
       )
       .sort((a, b) => {
-        const titleA = a.title.toUpperCase();
-        const titleB = b.title.toUpperCase();
-  
         if (sortBy === 'asc') {
-          return titleA.localeCompare(titleB);
+          return a.title.localeCompare(b.title);
         } else {
-          return titleB.localeCompare(titleA);
+          return b.title.localeCompare(a.title);
         }
       });
   
     return (
       <div>
-    
-    <div className="header-content" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+        <div className="header-content" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
           <TextField
             label="Search by Title"
             value={searchTermTitle}
             onChange={handleTitleSearchChange}
-            style={{padding:'5px'}}
+            style={{ padding: '5px' }}
           /><br></br>
           <FormControl>
             <Typography>Search by Genre</Typography>
-          
             <Select
               labelId="genre-label"
               id="genre-select"
@@ -264,18 +265,23 @@ const genreMapping = {
               ))}
             </Select>
           </FormControl>
+          <br></br>
           <Button onClick={handleSortChange} color="primary">
-            Sort {sortBy === 'asc' ? 'Z-A' : 'A-Z'}
+            Sort by Title {sortBy === 'asc' ? 'Z-A' : 'A-Z'}
+          </Button>
+          <br></br>
+          <Button onClick={handleSortByDate} color="primary">
+            Sort by Date {sortBy === 'asc' ? 'Oldest First' : 'Newest First'}
           </Button>
         </div>
-
+  
         {sortedAndFilteredPodcasts.map((podcast) => (
           <PodcastCard key={podcast.id} podcast={podcast} allIds={podcastData.map((p) => p.id)} />
         ))}
       </div>
     );
   };
-
+  
 
 PodcastList.propTypes = {
   podcastData: PropTypes.arrayOf(
@@ -296,6 +302,7 @@ const PodcastContainer = () => {
   const [podcastData, setPodcastData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [favoriteSeasons, setFavoriteSeasons] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -318,12 +325,27 @@ const PodcastContainer = () => {
     fetchData();
   }, []);
 
+  // Function to update favorite seasons
+  const handleUpdateFavorites = (season) => {
+    setFavoriteSeasons((prevSeasons) => {
+      if (prevSeasons.includes(season)) {
+        return prevSeasons.filter((s) => s !== season);
+      } else {
+        return [...prevSeasons, season];
+      }
+    });
+  };
+
   return (
     <>
       {loading && <Loader />}
       {error && <Error />}
-      {podcastData && <PodcastList podcastData={podcastData} />}
-      
+      {podcastData && (
+        <>
+          <PodcastList podcastData={podcastData} handleUpdateFavorites={handleUpdateFavorites} />
+          <FavoriteEpisodes favoriteSeasons={favoriteSeasons} podcastData={podcastData} />
+        </>
+      )}
     </>
   );
 };

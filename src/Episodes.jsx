@@ -6,6 +6,7 @@ import Error from './Error.jsx';
 import { Container } from '@mui/system';
 import { Button } from '@mui/material';
 import FavoriteEpisodes from './FavoriteEpisodes.jsx';
+
 // eslint-disable-next-line react/prop-types
 const Episodes = ({ podcastId }) => {
   const apiUrl = `https://podcast-api.netlify.app/id/${podcastId}`;
@@ -37,11 +38,13 @@ const Episodes = ({ podcastId }) => {
 
   const handleAddToFavorites = (episode) => {
     if (episode) {
-      if (favoriteEpisodes.includes(episode)) {
+      if (favoriteEpisodes.some((e) => e.id === episode.id)) {
+        // Remove episode from favorites if already present
         setFavoriteEpisodes((prevEpisodes) =>
-          prevEpisodes.filter((e) => e !== episode)
+          prevEpisodes.filter((e) => e.id !== episode.id)
         );
       } else {
+        // Add episode to favorites
         setFavoriteEpisodes((prevEpisodes) => [...prevEpisodes, episode]);
       }
     }
@@ -54,7 +57,6 @@ const Episodes = ({ podcastId }) => {
           {podcastData.seasons.map((season) => (
             <div key={season.season}>
               <h2>{season.title}</h2>
-            
 
               {season.episodes.map((episode) => (
                 <div key={episode.episode} className="episode">
@@ -66,7 +68,7 @@ const Episodes = ({ podcastId }) => {
                     Your browser does not support the audio tag.
                   </audio>
                   <Button onClick={() => handleAddToFavorites(episode)}>
-                    {favoriteEpisodes.includes(episode)
+                    {favoriteEpisodes.some((e) => e.id === episode.id)
                       ? 'Remove from favorites'
                       : 'Add to favorites'}
                   </Button>
