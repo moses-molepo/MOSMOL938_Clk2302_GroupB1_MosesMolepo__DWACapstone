@@ -45,7 +45,7 @@ const LoginPage = () => {
 
       <h2 className='topHeader'>Welcome to Podgasm
       <img
-        src="/src/assets/podcast.png"
+        src="/src/podcast.png"
         alt="Podcast Icon"
         width="50"
         height="32"
