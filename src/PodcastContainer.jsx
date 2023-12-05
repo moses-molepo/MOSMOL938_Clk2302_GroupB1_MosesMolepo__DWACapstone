@@ -242,7 +242,7 @@ const genreMapping = {
   
     return (
       <div>
-        <div className="header-content" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+        <div className="header-content" >
           <TextField
             label="Search by Title"
             value={searchTermTitle}

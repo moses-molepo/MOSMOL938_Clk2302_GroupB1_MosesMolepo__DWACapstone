@@ -1,47 +1,67 @@
-body{
+body {
   background-color: rgb(157, 193, 67);
   color: rgb(47, 42, 42);
+  margin: 0;
 }
 
+h1 {
+  font-size: 2rem;
+}
 
-
-.cards{
+.cards {
   background-color: #f3f3f3;
 }
 
 .loader-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-     /* Set the height of the container to the full viewport height */
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-
-  
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid hsla(0, 0%, 6%, 0.593); /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-    
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid hsla(0, 0%, 6%, 0.593);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.header-content {
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topHeader {
+  color: #333; /* Set your desired text color */
+  background-color: rgb(67, 135, 8)71%, 38%; /* Set your desired background color */
+  padding: 10px; /* Set your desired padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media query for small screens like iPhone SE */
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 14px; /* Adjust the font size for small screens */
   }
 
   .header-content {
-  /* Set your desired background color */
-    padding: 10px; /* Set your desired padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a nice effect */
-  }
-  
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    padding: 5px; /* Adjust the padding for small screens */
   }
 
-
-@media (prefers-color-scheme: light) {
-
+  h1 {
+    font-size: 1.5rem; /* Adjust the font size for small screens */
+  }
 }

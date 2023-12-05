@@ -1,33 +1,24 @@
-/* eslint-disable react/prop-types */
 // FavoriteEpisodes.jsx
 
 
-const FavoriteEpisodes = ({ favoriteSeasons, podcastData }) => {
+
+const FavoriteEpisodes = ({ episodes }) => {
+  // Ensure episodes is an array before mapping
+  const favoriteEpisodes = episodes || [];
+
   return (
     <div>
       <h2>Favorite Episodes</h2>
-      {favoriteSeasons.map((selectedSeason) => {
-        const season = podcastData.seasons.find((s) => s.season === selectedSeason);
-        if (season) {
-          return (
-            <div key={season.season}>
-              <h3>{season.title}</h3>
-              {season.episodes.map((episode) => (
-                <div key={episode.episode} className="episode">
-                  <h4>{episode.title}</h4>
-                  <p>{episode.description}</p>
-                  <p>Episode: {episode.episode}</p>
-                  <audio controls>
-                    <source src={episode.file} type="audio/mp3" />
-                    Your browser does not support the audio tag.
-                  </audio>
-                </div>
-              ))}
-            </div>
-          );
-        }
-        return null;
-      })}
+      {favoriteEpisodes.map((episode) => (
+        <div key={episode.id} className="favorite-episode">
+          <h3>{episode.title}</h3>
+          <h3>{episode.description}</h3>
+          <audio controls>
+             <source src={episode.file} type="audio/mp3" />
+           Your browser does not support the audio tag.
+            </audio>
+        </div>
+      ))}
     </div>
   );
 };

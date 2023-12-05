@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import Loader from './Loader.jsx';
 import Error from './Error.jsx';
-import { Container } from '@mui/system';
-import { Button } from '@mui/material';
+import { Container, Button } from '@mui/material';
 import FavoriteEpisodes from './FavoriteEpisodes.jsx';
 
 // eslint-disable-next-line react/prop-types
@@ -43,9 +42,15 @@ const Episodes = ({ podcastId }) => {
         setFavoriteEpisodes((prevEpisodes) =>
           prevEpisodes.filter((e) => e.id !== episode.id)
         );
+
+        // Log removal data
+        console.log('Removed from favorites:', episode);
       } else {
         // Add episode to favorites
         setFavoriteEpisodes((prevEpisodes) => [...prevEpisodes, episode]);
+
+        // Log addition data
+        console.log('Added to favorites:', episode);
       }
     }
   };
@@ -67,6 +72,7 @@ const Episodes = ({ podcastId }) => {
                     <source src={episode.file} type="audio/mp3" />
                     Your browser does not support the audio tag.
                   </audio>
+                  {/* Render the button only once for each episode */}
                   <Button onClick={() => handleAddToFavorites(episode)}>
                     {favoriteEpisodes.some((e) => e.id === episode.id)
                       ? 'Remove from favorites'
@@ -86,6 +92,8 @@ const Episodes = ({ podcastId }) => {
       {loading && <Loader />}
       {error && <Error />}
       {podcastData && <Template />}
+      {/* Separate rendering of FavoriteEpisodes */}
+      {favoriteEpisodes.length > 0 && <FavoriteEpisodes episodes={favoriteEpisodes} />}
     </>
   );
 };
