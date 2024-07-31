@@ -1,0 +1,78 @@
+body {
+  font-family: sans-serif;
+  color: aliceblue;
+  margin: 1px; 
+  background-image: url('logo.jpg');
+  background-repeat: repeat;
+  background-position: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loader {
+  border: 16px solid #06b9cd56;
+  border-top: 16px solid hsla(0, 0%, 6%, 0.593);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.header-content {
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(2, 172, 223, 0.826);
+  background-color: rgba(18, 224, 159, 0.174);
+}
+
+.topHeader {
+  color: #00ccff;   
+  padding: 10px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media query for small screens like iPhone SE */
+@media only screen and (max-width: 280px) {
+  body {
+    font-size: 10px; /* Adjust font size to fit smaller screens */
+  }
+
+  .header-content {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 0.6rem; /* Adjust heading font size */
+    word-wrap: break-word; /* Allow long words to break into multiple lines */
+    overflow-wrap: break-word; /* Allow long words to break into multiple lines */
+  }
+
+
+  .welcome-text {
+    font-size: 1rem;
+    word-break: break-all; /* Adjust font size for smaller screens */
+  }
+}
+
