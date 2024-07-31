@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -20,7 +20,7 @@ const genreMapping = {
   9: 'Kids and Family',
 };
 
-const PodcastList = ({ podcastData }) => {{
+const PodcastList = ({ podcastData }) => {
   const [sortBy, setSortBy] = useState('asc');
   const [searchTermTitle, setSearchTermTitle] = useState('');
   const [searchTermGenre, setSearchTermGenre] = useState('');
@@ -77,8 +77,7 @@ const PodcastList = ({ podcastData }) => {{
       <PodcastCarousel podcasts={sortedAndFilteredPodcasts} />
     </div>
   );
-}
-}
+};
 
 PodcastList.propTypes = {
   podcastData: PropTypes.arrayOf(
