@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Loader from './Loader';
 import Error from './Error';
-import PodcastList from './PodcastList.jsx';
+import PodcastList from './PodcastList'; 
+
 
 const PodcastContainer = () => {
   const [podcastData, setPodcastData] = useState(null);
