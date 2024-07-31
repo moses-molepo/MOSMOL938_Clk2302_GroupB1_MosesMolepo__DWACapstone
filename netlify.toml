@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "build" # directory where build output is located
+  publish = "build" 
 
 [build.environment]
   NODE_VERSION = "22.5.1" 
