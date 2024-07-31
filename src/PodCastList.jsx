@@ -20,7 +20,7 @@ const genreMapping = {
   9: 'Kids and Family',
 };
 
-const PodcastList = ({ podcastData }) => {
+const PodcastList = ({ podcastData }) => {{
   const [sortBy, setSortBy] = useState('asc');
   const [searchTermTitle, setSearchTermTitle] = useState('');
   const [searchTermGenre, setSearchTermGenre] = useState('');
@@ -77,7 +77,8 @@ const PodcastList = ({ podcastData }) => {
       <PodcastCarousel podcasts={sortedAndFilteredPodcasts} />
     </div>
   );
-};
+}
+}
 
 PodcastList.propTypes = {
   podcastData: PropTypes.arrayOf(
