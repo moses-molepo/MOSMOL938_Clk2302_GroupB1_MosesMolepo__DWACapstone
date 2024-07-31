@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Loader from './Loader';
 import Error from './Error';
-import PodCastList from './PodcastList'; 
+import PodCastList from './PodcastLiist'; 
 
 
 const PodcastContainer = () => {
