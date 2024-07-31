@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Loader from './Loader';
 import Error from './Error';
-import PodcastList from './PodcastList'; 
+import PodCastList from './PodcastList'; 
 
 
 const PodcastContainer = () => {
@@ -31,7 +31,7 @@ const PodcastContainer = () => {
     <>
       {loading && <Loader />}
       {error && <Error />}
-      {podcastData && <PodcastList podcastData={podcastData} />}
+      {podcastData && <PodCastList podcastData={podcastData} />}
     </>
   );
 };

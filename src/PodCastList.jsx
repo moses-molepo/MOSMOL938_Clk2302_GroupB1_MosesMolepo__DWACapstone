@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -20,7 +20,7 @@ const genreMapping = {
   9: 'Kids and Family',
 };
 
-const PodcastList = ({ podcastData }) => {
+const PodCastList = ({ podcastData }) => {
   const [sortBy, setSortBy] = useState('asc');
   const [searchTermTitle, setSearchTermTitle] = useState('');
   const [searchTermGenre, setSearchTermGenre] = useState('');
@@ -79,7 +79,7 @@ const PodcastList = ({ podcastData }) => {
   );
 };
 
-PodcastList.propTypes = {
+PodCastList.propTypes = {
   podcastData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -93,4 +93,4 @@ PodcastList.propTypes = {
   ).isRequired,
 };
 
-export default PodcastList;
+export default PodCastList;
